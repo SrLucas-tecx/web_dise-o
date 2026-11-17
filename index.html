@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Semitonos DTF</title>
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<aside id="panel">
+  <h1>Semitonos DTF</h1>
+  <label class="btn" for="file">Abrir imagen</label>
+  <input type="file" id="file" accept="image/*" hidden>
+  <p class="hint" id="info">Arrastra una imagen, pégala (Ctrl+V) o usa el botón.</p>
+
+  <fieldset><legend>Trama</legend>
+    <label>Tamaño de punto <b id="v-cell">8</b> px<input type="range" id="cell" min="2" max="60" value="8"></label>
+    <label>Ángulo <b id="v-angle">45</b>°<input type="range" id="angle" min="0" max="90" value="45"></label>
+    <label>Forma
+      <select id="shape"><option value="circle">Círculo</option><option value="square">Cuadrado</option><option value="diamond">Rombo</option><option value="line">Línea</option></select>
+    </label>
+  </fieldset>
+
+  <fieldset><legend>Color</legend>
+    <label>Modo
+      <select id="color"><option value="ink">Tinta única</option><option value="original">Color original</option></select>
+    </label>
+    <label id="inkRow">Tinta <input type="color" id="ink" value="#000000"></label>
+  </fieldset>
+
+  <fieldset><legend>Tono</legend>
+    <label>Contraste <b id="v-contrast">0</b><input type="range" id="contrast" min="-100" max="100" value="0"></label>
+    <label>Brillo <b id="v-brightness">0</b><input type="range" id="brightness" min="-100" max="100" value="0"></label>
+    <label class="row"><input type="checkbox" id="invert"> Invertir (puntos en zonas claras)</label>
+  </fieldset>
+
+  <fieldset><legend>Limpieza</legend>
+    <label class="row"><input type="checkbox" id="bgOn"> Quitar fondo</label>
+    <label>Color de fondo <input type="color" id="bgKey" value="#ffffff"></label>
+    <button class="btn alt" id="pick" type="button">Tomar color con cuentagotas</button>
+    <label>Tolerancia <b id="v-tol">20</b>%<input type="range" id="tol" min="0" max="100" value="20"></label>
+    <label>Alcance
+      <select id="scope"><option value="edge">Solo fondo conectado al borde</option><option value="all">Ese color en toda la imagen</option></select>
+    </label>
+    <label>Quitar semitransparentes bajo <b id="v-athr">0</b><input type="range" id="athr" min="0" max="254" value="0"></label>
+    <label class="row"><input type="checkbox" id="hard"> Borde nítido (sin semitransparencias)</label>
+    <label>Contraer borde <b id="v-erode">0</b> px<input type="range" id="erode" min="0" max="5" value="0"></label>
+    <label>Quitar motas menores a <b id="v-specks">0</b> px<input type="range" id="specks" min="0" max="300" value="0"></label>
+    <label class="row"><input type="checkbox" id="defringe"> Limpiar color del borde (sin halos)</label>
+    <label class="row"><input type="checkbox" id="clean"> Ver sin semitono</label>
+  </fieldset>
+
+  <fieldset><legend>Vista</legend>
+    <label>Zoom
+      <select id="zoom"><option value="fit">Ajustar</option><option value="0.5">50%</option><option value="1">100%</option><option value="2">200%</option><option value="4">400%</option></select>
+    </label>
+    <label>Fondo de prueba
+      <select id="bg"><option value="checker">Cuadros</option><option value="white">Blanco</option><option value="black">Negro</option><option value="custom">Color…</option></select>
+    </label>
+    <label id="bgRow" hidden>Color <input type="color" id="bgColor" value="#2a3a6b"></label>
+    <label class="row"><input type="checkbox" id="orig"> Ver original</label>
+  </fieldset>
+
+  <fieldset><legend>Exportar</legend>
+    <label>Escala
+      <select id="mult"><option value="1">×1 (tamaño original)</option><option value="2">×2</option><option value="3">×3</option></select>
+    </label>
+    <button class="btn" id="export" disabled>Descargar PNG</button>
+  </fieldset>
+  <p class="hint" id="status"></p>
+</aside>
+<main id="stage" class="checker"><canvas id="view"></canvas><div id="drop">Suelta tu imagen aquí</div></main>
+<script src="js/halftone.js"></script>
+<script src="js/loader.js"></script>
+<script src="js/cleanup.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

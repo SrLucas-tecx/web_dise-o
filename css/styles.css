@@ -1,0 +1,30 @@
+:root{--ink:#1c2540;--bg:#eef0f5;--panel:#fff;--line:#d5d9e3;--accent:#d62a74;--muted:#667089}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0}
+body{display:grid;grid-template-columns:300px 1fr;font:14px/1.4 "Segoe UI",system-ui,sans-serif;color:var(--ink);background:var(--bg)}
+#panel{background:var(--panel);border-right:1px solid var(--line);padding:16px;overflow-y:auto;display:flex;flex-direction:column;gap:12px}
+h1{font-size:20px;margin:0}
+fieldset{border:1px solid var(--line);border-radius:6px;margin:0;padding:10px 12px;display:flex;flex-direction:column;gap:10px}
+legend{padding:0 6px;font-weight:600}
+label{display:flex;flex-direction:column;gap:4px}
+label.row{flex-direction:row;align-items:center;gap:8px}
+label[hidden]{display:none}
+input[type=range]{width:100%;accent-color:var(--accent)}
+select,input[type=color]{width:100%;padding:5px;border:1px solid var(--line);border-radius:4px;background:#fff;font:inherit}
+input[type=color]{height:32px;padding:2px}
+.btn{display:block;text-align:center;padding:9px 12px;background:var(--ink);color:#fff;border:0;border-radius:6px;font:inherit;font-weight:600;cursor:pointer}
+.btn:hover{background:var(--accent)}
+.btn:disabled{opacity:.4;cursor:not-allowed;background:var(--ink)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.hint{margin:0;color:var(--muted);font-size:12px}
+#stage{position:relative;overflow:auto;display:grid;place-items:center;padding:16px}
+#stage.checker{background:conic-gradient(#d9dce4 25%,#f4f5f8 0 50%,#d9dce4 0 75%,#f4f5f8 0) 0 0/20px 20px}
+#stage.white{background:#fff}
+#stage.black{background:#000}
+#view{display:none;max-width:none}
+#drop{position:absolute;inset:12px;border:2px dashed var(--accent);border-radius:8px;display:none;place-items:center;font-size:18px;background:rgba(255,255,255,.85)}
+#stage.over #drop{display:grid}
+@media (max-width:720px){body{grid-template-columns:1fr;grid-template-rows:auto 60vh}#panel{border-right:0;border-bottom:1px solid var(--line)}}
+.btn.alt{background:#fff;color:var(--ink);border:1px solid var(--ink)}
+.btn.alt:hover{background:var(--ink);color:#fff}
+#view.pick{cursor:crosshair}
